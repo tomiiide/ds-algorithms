@@ -115,12 +115,18 @@ function LinkedList() {
         } else {
           head.previous = null;
         }
+      } else if (position === length - 1) {
+        //if removing last item
+        current = tail;
+        tail = current.previous;
+        tail.next = null;
       } else {
         while (index++ < position) {
           previous = current;
           current = current.next;
         }
         previous.next = current.next;
+        current.next.previous = previous;
       }
 
       length--;
