@@ -1,3 +1,16 @@
+import LinkedList from "./../linked-lists/LinkedList";
+
+class ValuePair {
+  constructor(key, value) {
+    this.key = key;
+    this.value = value;
+  }
+
+  toString() {
+    return `[ ${this.key} - ${this.value} ]`;
+  }
+}
+
 class HashTable {
   constructor() {
     this.table = [];
@@ -5,9 +18,11 @@ class HashTable {
 
   put(key, value) {
     let position = this.looseHashCode(key);
-    this.table[position] = value;
-    console.log(position + " - " + value);
-    return position;
+
+    if (this.table[position] === undefined) {
+      this.table[position] = new LinkedList();
+    }
+    this.table[position].append(new ValuePair(key, value));
   }
 
   remove(key) {
@@ -17,7 +32,17 @@ class HashTable {
   }
 
   get(key) {
-    return this.table[this.looseHashCode(key)];
+    let position = this.looseHashCode(key);
+
+    if (this.table[position] !== undefined) {
+      var current = this.table[position].getHead();
+
+      while (current.next) {
+        if (current.element.key === key) {
+          return current.element.value;
+        }
+      }
+    }
   }
 
   looseHashCode(key) {

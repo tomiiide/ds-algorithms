@@ -8,3 +8,8 @@ This repo contains codes and exercise solutions from the book, Data Structures a
   - Doubly linked lists
 
 - Sets
+
+- Dictionaries
+  - Dictionary
+  - Hash Tables
+  - Seperate Chaining Hash Tables

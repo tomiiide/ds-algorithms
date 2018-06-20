@@ -19,7 +19,7 @@ class Dictionary {
   }
 
   get(key) {
-    return this.items[key];
+    return this.has(key) ? this.items[key] : false;
   }
 
   clear() {
