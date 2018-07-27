@@ -10,6 +10,12 @@ This repo contains codes and exercise solutions from the book, Data Structures a
 - Sets
 
 - Dictionaries
-  - Dictionary
-  - Hash Tables
-  - Seperate Chaining Hash Tables
+
+- Hash Tables
+
+  - Solving Collisions
+    - Seperate Chaining
+    - Linear Probing
+
+- Trees
+  - Binary Search Trees

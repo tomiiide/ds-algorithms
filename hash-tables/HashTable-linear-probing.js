@@ -82,6 +82,15 @@ class HashTable {
 
     return hash % 37;
   }
+
+  djb2HashCode(key) {
+    var hash = 5381;
+    for (let index = 0; index < key.length; index++) {
+      hash = hash * 33 + key.charCodeAt(index);
+    }
+
+    return hash % 1013;
+  }
 }
 
 function test() {
