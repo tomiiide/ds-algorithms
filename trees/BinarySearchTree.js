@@ -119,7 +119,35 @@ class BinarySearchTree {
     return maxNode(this.root);
   }
 
-  remove(key) {}
+  remove(key) {
+    let removeNode = function(node, key) {
+      // when the node is empty return null
+      if (node === null) {
+        return null;
+      }
+      if (key < node.key) {
+        node.left = removeNode(node.left, key);
+        return node;
+      } else if (key > node.key) {
+        node.right = removeNode(node.right, key);
+        return node;
+      } else {
+        //key is equal to node.key
+        //case 1 - a leaf node
+        if (node.left === null && node.right === null) {
+          node = null;
+          return node;
+        }
+
+        //case 2 - a node with only 1 child
+        let aux = minDescandantNode(node.right);
+        node.key = aux.key;
+        node.right = removeNode(node.right, aux.key);
+        return node;
+      }
+    };
+    this.root = removeNode(this.root, key);
+  }
 }
 
 function test() {
@@ -156,6 +184,8 @@ function test() {
   console.log(tree.search(32) ? "key 32 was found" : "key 32 wasn't found");
   console.log(tree.search(54) ? "key 54 was found" : "key 54 wasn't found");
   console.log(tree.search(101) ? "key 101 was found" : "key 101 wasn't found");
+  console.log("-------searching---------");
+  console.log(tree.remove());
 }
 
 test();
